@@ -29,6 +29,11 @@ public class checkbox {
         //otra forma de assertions es:
         // Assert.assertEquals("espero 5 usuarios", "obtengo 6 usuarios, no pasa el assertion");
 
+        //leccion 64 extra
+
+        System.out.println(driver.findElement(By.id("ctl00_mainContent_view_date2")).isEnabled());
+        driver.findElement(By.id("ctl00_mainContent_rbtnl_Trip_1")).click();
+        System.out.println(driver.findElement(By.id("ctl00_mainContent_view_date2")).isEnabled());
 
 
 
