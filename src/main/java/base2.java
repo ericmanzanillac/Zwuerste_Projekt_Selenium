@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -8,13 +9,25 @@ import java.util.List;
 //Amazon question: todos los dias se agregaran productos a la pagina, y los nuevos items quieren probar si pueden
 //agregarlos al cart o no, entonces con ese array vas a poder agregar nuevos items
 
-public class base {
+public class base2 {
     public static void main(String[] args) {
 
         ChromeDriver driver = new ChromeDriver();
         //expected array
         String[] itemsNeeded = {"Cucumber", "Brocolli","Beetroot","Carrot"};
         driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
+        addItems(driver,itemsNeeded);
+        //base b = new base();
+        //b.addItems(driver,itemsNeeded);
+
+}
+
+
+
+
+    public static void addItems(WebDriver driver, String[] itemsNeeded){
+
+
 
         List<WebElement> products = driver.findElements(By.xpath("//h4[@class='product-name']"));
 
@@ -45,5 +58,7 @@ public class base {
             }
         }
     }
-}
+
+    }
+
 
