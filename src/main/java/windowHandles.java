@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class windowHandles {
-    public static void main(String[] args){
+    public static void main(String[] args) throws InterruptedException {
 
         WebDriver driver = new ChromeDriver();
         driver.get("https://rahulshettyacademy.com/loginpagePractise/");
@@ -16,7 +16,10 @@ public class windowHandles {
         String parentId = ite.next();
         String childId = ite.next();
         driver.switchTo().window(childId);
-        System.out.println(driver.findElement(By.xpath("//p[@class='im-para red']")).getText().split("at"));
+        String email = driver.findElement(By.xpath("//p[@class='im-para red']")).getText().split("at")[1].trim().split(" ")[0];
+        driver.switchTo().window(parentId);
+        Thread.sleep(1500);
+        driver.findElement(By.id("username")).sendKeys(email);
 
     }
 }
