@@ -2,7 +2,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 
 import java.util.List;
 
@@ -14,43 +13,38 @@ public class assignment6 {
         driver.get("https://rahulshettyacademy.com/AutomationPractice/");
         driver.findElement(By.id("checkBoxOption2")).click();
         Thread.sleep(1000);
+        String textOption = "";
 
         List<WebElement> allCheckboxes = driver.findElements(By.xpath("//div[@id='checkbox-example']//input[@type='checkbox']"));
         for (WebElement checkbox : allCheckboxes){
             if (checkbox.isSelected()){
-                String textOption = checkbox.getAttribute("value");
+                textOption = checkbox.getAttribute("value");
                 System.out.println(textOption);
             }
         }
-        driver.findElement(By.xpath("div//[@class='dropdown-class-example']//option[text()='Option']"));
+        String suggestionText = "";
+        String correctedDropdownText = textOption.substring(0,1).toUpperCase() + textOption.substring(1);
+        List<WebElement> allSuggestions = driver.findElements(By.xpath("//select[@name='dropdown-class-example']//option"));
+        for (WebElement suggestion : allSuggestions){
+            suggestionText = suggestion.getText();
+            if (correctedDropdownText.equals(suggestionText)){
+                suggestion.click();
+                System.out.println(suggestionText);
+                break;
+            }
+        }
+        WebElement inputField = driver.findElement(By.name("enter-name"));
+        inputField.sendKeys(suggestionText);
 
+        driver.findElement(By.id("alertbtn")).click();
+        if (driver.switchTo().alert().getText().contains(suggestionText)) {
+            System.out.println("La " + suggestionText +" está en la alerta");
+        }
+        else {
+            System.out.println("NO");
+        }
+        driver.switchTo().alert().accept();
     }
 }
 
-
-
-        /*System.out.println(driver.findElements(By.tagName("a")).size());
-        WebElement row = driver.findElement(By.xpath("//div[@id='content']/div[@class='row']"));
-        System.out.println(row.findElements(By.tagName("a")).size())+++;
-
-//First column
-
-        WebElement macBook = row.findElement(By.xpath("//div[1]/div[@class='product-thumb transition']"));
-        System.out.println(macBook.findElements(By.tagName("a")).size());
-
-        //click each link in the column and check if its opening
-        for(int i = 1; i<macBook.findElements(By.tagName("a")).size(); i++) {
-
-            String onclickTab = Keys.chord(Keys.CONTROL, Keys.ENTER);
-            macBook.findElements(By.tagName("a")).get(i).sendKeys(onclickTab);
-            Thread.sleep(5000L);
-        }
-
-        Set<String> tabsIte = driver.getWindowHandles();
-        Iterator<String> iterator = tabsIte.iterator();
-
-        while(iterator.hasNext()){
-            driver.switchTo().window(iterator.next());
-            System.out.println(driver.getTitle());*/
-/*}*/
 
