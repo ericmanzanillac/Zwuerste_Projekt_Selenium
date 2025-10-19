@@ -8,7 +8,6 @@ import java.util.List;
 public class assignment6 {
     public static void main(String[]args) throws InterruptedException {
 
-        //Give me the count of links on the page
         WebDriver driver = new ChromeDriver();
         driver.get("https://rahulshettyacademy.com/AutomationPractice/");
         driver.findElement(By.id("checkBoxOption2")).click();
