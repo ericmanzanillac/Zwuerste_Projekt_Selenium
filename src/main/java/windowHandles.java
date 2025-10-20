@@ -21,5 +21,6 @@ public class windowHandles {
         Thread.sleep(1500);
         driver.findElement(By.id("username")).sendKeys(email);
 
+
     }
 }

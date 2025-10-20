@@ -18,6 +18,5 @@ public class assignment {
         Assert.assertFalse(driver.findElement(By.xpath("//input[@id='checkBoxOption1']")).isSelected());
         System.out.println(driver.findElements(By.xpath("//input[@type='checkbox']")).size());
 
-
     }
 }
